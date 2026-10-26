@@ -145,9 +145,9 @@ input,textarea,select{-webkit-user-select:text;-moz-user-select:text;user-select
 <div class="container">
 
   <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-icon">&#128204;</div><div class="kpi-value" id="kpi-vigentes">0</div><div class="kpi-label">Hallazgos Vigentes</div></div>
+    <div class="kpi-card"><div class="kpi-icon">&#128204;</div><div class="kpi-value" id="kpi-total">0</div><div class="kpi-label">Total de Hallazgos</div></div>
     <div class="kpi-card"><div class="kpi-icon">&#128993;</div><div class="kpi-value" id="kpi-proceso">0</div><div class="kpi-label">En Proceso</div></div>
-    <div class="kpi-card"><div class="kpi-icon">&#128308;</div><div class="kpi-value" id="kpi-no-iniciado">0</div><div class="kpi-label">No Iniciados</div></div>
+    <div class="kpi-card"><div class="kpi-icon">&#128994;</div><div class="kpi-value" id="kpi-realizado">0</div><div class="kpi-label">Realizados</div></div>
   </div>
 
   <div class="table-container">
@@ -359,13 +359,13 @@ function animateCounter(el, target, dur){
 }
 
 function buildKpis(){
-  const pendientes = hallazgos.filter(function(h){ return isPendiente(h.estado); });
-  const total = pendientes.length;
+  const total = hallazgos.length;
   const enProceso = hallazgos.filter(function(h){ return h.estado === 'En Proceso'; }).length;
-  const noIniciado = hallazgos.filter(function(h){ return h.estado === 'No Iniciado'; }).length;  setTimeout(function(){
-    animateCounter(document.getElementById('kpi-vigentes'), total, 1000);
+  const realizados = hallazgos.filter(function(h){ return h.estado === 'Realizado'; }).length;
+  setTimeout(function(){
+    animateCounter(document.getElementById('kpi-total'), total, 1000);
     animateCounter(document.getElementById('kpi-proceso'), enProceso, 1000);
-    animateCounter(document.getElementById('kpi-no-iniciado'), noIniciado, 1000);
+    animateCounter(document.getElementById('kpi-realizado'), realizados, 1000);
   }, 250);
 }
 
